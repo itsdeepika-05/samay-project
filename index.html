@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f233d" />
+  <meta name="description" content="SAMAY — Public Service Guarantee Act & Citizen Service Deadline Tracker. Monitor service promises, prevent statutory breaches, and automate appeal drafts." />
+  <title>SAMAY — Public Service Deadline Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Mobile Sidebar Backdrop -->
+  <div class="sidebar-backdrop hidden" id="sidebarBackdrop" aria-hidden="true"></div>
+
+  <div class="app-shell">
+    <!-- Left Navigation Sidebar -->
+    <aside class="sidebar" id="sidebar" aria-label="Main Navigation">
+      <div class="sidebar-header">
+        <a class="brand" href="#" aria-label="SAMAY home">
+          <span class="brand-mark">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </span>
+          <span class="brand-text">
+            <strong>SAMAY</strong>
+            <small>Public Service Tracker</small>
+          </span>
+        </a>
+        <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close menu">✕</button>
+      </div>
+
+      <div class="side-label">WORKSPACE DASHBOARDS</div>
+      <nav class="nav" aria-label="Dashboards navigation">
+        <button class="nav-item active" data-view="citizen" id="navCitizen">
+          <span class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+          </span>
+          <span class="nav-text">Citizen dashboard</span>
+          <span class="nav-badge" id="citizenAlertBadge" title="Urgent applications" style="display:none">0</span>
+        </button>
+
+        <button class="nav-item" data-view="officer" id="navOfficer">
+          <span class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </span>
+          <span class="nav-text">Officer radar</span>
+        </button>
+
+        <button class="nav-item" data-view="commission" id="navCommission">
+          <span class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+              <line x1="8" y1="2" x2="8" y2="18"></line>
+              <line x1="16" y1="6" x2="16" y2="22"></line>
+            </svg>
+          </span>
+          <span class="nav-text">Commission map</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <div class="help-card-header">
+            <span class="help-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+            </span>
+            <strong>Public Service Guarantee</strong>
+          </div>
+          <p>Every citizen service has a legally mandated deadline. SAMAY makes statutory compliance transparent.</p>
+          <button class="text-button" id="rightsBtn">How it works <span aria-hidden="true">↗</span></button>
+        </div>
+
+        <div class="profile">
+          <div class="avatar" title="Demo User">DK</div>
+          <div class="profile-info">
+            <strong>Demo Workspace</strong>
+            <small>Prototype mode · Local</small>
+          </div>
+          <button class="quiet-btn reset-shortcut-btn" id="sidebarResetBtn" title="Reset sample data" aria-label="Reset demonstration data">↺</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main" id="mainContent">
+      <!-- Top Navigation Header -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu" id="menuBtn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sidebar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <span>Workspace</span>
+            <span class="crumb-sep" aria-hidden="true">/</span>
+            <strong id="crumbTitle">Citizen dashboard</strong>
+          </nav>
+        </div>
+
+        <div class="top-actions">
+          <span class="demo-pill" title="Demonstration mode: Data is safely stored in local browser storage">
+            <span class="live-dot" aria-hidden="true"></span>
+            <span>Demo Data</span>
+          </span>
+
+          <div class="notifications-wrapper">
+            <button class="icon-button" id="notifyBtn" aria-label="View notifications" aria-expanded="false">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+              <i class="has-dot" id="notifyDot"></i>
+            </button>
+
+            <!-- Notifications Dropdown Popover -->
+            <div class="notifications-panel hidden" id="notificationsPanel">
+              <div class="notify-head">
+                <strong>Notifications</strong>
+                <button class="quiet-btn text-xs" id="clearNotifyBtn">Clear all</button>
+              </div>
+              <div class="notify-list" id="notifyList">
+                <div class="notify-item unread">
+                  <span class="notify-icon amber">◷</span>
+                  <div>
+                    <strong>Income Certificate Due Soon</strong>
+                    <p>SAM-2048 is approaching its 15-day statutory deadline.</p>
+                    <small>Urgent reminder</small>
+                  </div>
+                </div>
+                <div class="notify-item">
+                  <span class="notify-icon blue">⚖</span>
+                  <div>
+                    <strong>RTS Rule Registry</strong>
+                    <p>Maharashtra Right to Public Service rules loaded.</p>
+                    <small>System notice</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="top-avatar" id="profileBadge" title="Citizen / Officer demo profile" aria-label="User profile">DK</button>
+        </div>
+      </header>
+
+      <!-- ==================== VIEW 1: CITIZEN DASHBOARD ==================== -->
+      <section class="view active" id="view-citizen" aria-labelledby="citizenHeading">
+        <div class="welcome-row">
+          <div>
+            <div class="eyebrow" id="currentDateDisplay">TODAY'S WORKSPACE</div>
+            <h1 id="citizenHeading">Your rights, <span>on time.</span></h1>
+            <p class="subhead">Track your public service promises, monitor statutory timelines, and take timely action.</p>
+          </div>
+          <div class="welcome-actions">
+            <button class="secondary-btn" id="exportCitizenCsvBtn" title="Export applications to CSV spreadsheet">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Export CSV</span>
+            </button>
+            <button class="primary-btn" id="newApplicationBtn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              <span>Track an application</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 5 Key Metrics Cards -->
+        <div class="stat-grid stat-grid-5">
+          <article class="stat-card" tabindex="0">
+            <div class="stat-top">
+              <span>Total Tracked</span>
+              <span class="stat-icon blue">▤</span>
+            </div>
+            <div class="stat-value" id="statTotal">05</div>
+            <div class="stat-foot">
+              <span class="tiny-dot blue-dot"></span>
+              <span id="statServiceTypes">Across all categories</span>
+            </div>
+          </article>
+
+          <article class="stat-card" tabindex="0">
+            <div class="stat-top">
+              <span>Pending / On Track</span>
+              <span class="stat-icon blue-soft">⏱</span>
+            </div>
+            <div class="stat-value" id="statOnTrack">02</div>
+            <div class="stat-foot">
+              <span class="positive">In progress</span>
+              <span>· well within window</span>
+            </div>
+          </article>
+
+          <article class="stat-card" tabindex="0">
+            <div class="stat-top">
+              <span>Due Soon</span>
+              <span class="stat-icon amber">◷</span>
+            </div>
+            <div class="stat-value" id="statRisk">01</div>
+            <div class="stat-foot">
+              <span class="warning-text">≤ 5 days remaining</span>
+              <span>· review today</span>
+            </div>
+          </article>
+
+          <article class="stat-card" tabindex="0">
+            <div class="stat-top">
+              <span>Overdue (Breached)</span>
+              <span class="stat-icon red">!</span>
+            </div>
+            <div class="stat-value" id="statBreached">01</div>
+            <div class="stat-foot">
+              <span class="danger-text">Action available</span>
+              <span>· eligible for appeal</span>
+            </div>
+          </article>
+
+          <article class="stat-card" tabindex="0">
+            <div class="stat-top">
+              <span>Completed</span>
+              <span class="stat-icon green">✓</span>
+            </div>
+            <div class="stat-value" id="statCompleted">01</div>
+            <div class="stat-foot">
+              <span class="positive">Successfully delivered</span>
+            </div>
+          </article>
+        </div>
+
+        <!-- Citizen Workspace Content Grid -->
+        <div class="content-grid citizen-grid">
+          <section class="panel applications-panel">
+            <div class="panel-heading">
+              <div>
+                <h2>My Applications</h2>
+                <p>Monitor service commitments and statutory delivery clocks.</p>
+              </div>
+              <div class="panel-heading-actions">
+                <button class="quiet-btn" id="resetDemoBtn" title="Reset to original sample data">↺ Reset sample data</button>
+                <button class="quiet-btn" id="viewAllBtn">Show all <span>→</span></button>
+              </div>
+            </div>
+
+            <!-- Enhanced Filters & Sorting Toolbar -->
+            <div class="filter-row">
+              <label class="search-box">
+                <span class="search-icon" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </span>
+                <input id="applicationSearch" type="search" placeholder="Search by service, reference number, or office..." aria-label="Search applications" />
+              </label>
+
+              <div class="filter-controls">
+                <div class="select-wrapper">
+                  <label for="statusFilter" class="sr-only">Filter by status</label>
+                  <select id="statusFilter" aria-label="Filter by status">
+                    <option value="all">All statuses</option>
+                    <option value="due-soon">Due soon</option>
+                    <option value="overdue">Overdue (Breached)</option>
+                    <option value="pending">Pending (On track)</option>
+                    <option value="completed">Completed</option>
+                  </select>
+                </div>
+
+                <div class="select-wrapper">
+                  <label for="sortFilter" class="sr-only">Sort applications</label>
+                  <select id="sortFilter" aria-label="Sort applications">
+                    <option value="deadline-asc">Sort: Deadline (Soonest first)</option>
+                    <option value="deadline-desc">Sort: Deadline (Latest first)</option>
+                    <option value="submitted-desc">Sort: Submitted (Newest first)</option>
+                    <option value="submitted-asc">Sort: Submitted (Oldest first)</option>
+                    <option value="service-asc">Sort: Service name (A–Z)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Applications Table -->
+            <div class="table-wrap">
+              <table aria-label="Citizen applications table">
+                <thead>
+                  <tr>
+                    <th scope="col">Service / Reference</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Submitted</th>
+                    <th scope="col">Target Deadline</th>
+                    <th scope="col">Days Remaining</th>
+                    <th scope="col">Status</th>
+                    <th scope="col" class="text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="applicationRows"></tbody>
+              </table>
+            </div>
+
+            <!-- Empty State for Citizen Applications -->
+            <div class="table-empty hidden" id="tableEmpty" role="status">
+              <div class="empty-icon">⌕</div>
+              <strong>No matching applications found</strong>
+              <p>Try adjusting your search keywords, clearing status filters, or track a new application.</p>
+              <div class="empty-actions">
+                <button class="secondary-btn" id="clearFiltersBtn">Clear search & filters</button>
+                <button class="primary-btn" id="emptyTrackBtn">Track new application</button>
+              </div>
+            </div>
+
+            <!-- Table Footer -->
+            <div class="panel-foot">
+              <span id="applicationCount">Showing 5 applications</span>
+              <span class="secure-note">
+                <span class="pulse-dot"></span> Saved in local browser memory · Mock demonstration data
+              </span>
+            </div>
+          </section>
+
+          <!-- Right Column: Deadline Radar Card -->
+          <aside class="panel deadline-panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Deadline Radar</h2>
+                <p>Closest active statutory deadline.</p>
+              </div>
+              <span class="radar-icon" aria-hidden="true">◷</span>
+            </div>
+
+            <div class="radar-ring" id="radarRing">
+              <div class="radar-inner">
+                <strong id="radarDays">04</strong>
+                <span id="radarUnit">days left</span>
+              </div>
+            </div>
+
+            <div class="radar-copy">
+              <span class="status-dot amber-bg" id="radarStatusDot"></span>
+              <strong id="radarServiceName">Income certificate</strong>
+              <span class="badge at-risk" id="radarBadge">Due soon</span>
+            </div>
+
+            <p class="muted-copy" id="radarCopyText">
+              This demo case is approaching its statutory service window.
+            </p>
+
+            <div class="deadline-date">
+              <span>Target deadline</span>
+              <strong id="radarDeadlineDate">—</strong>
+            </div>
+
+            <button class="secondary-btn full-width" id="radarActionBtn" data-open-case="SAM-2048">
+              View case timeline <span aria-hidden="true">→</span>
+            </button>
+          </aside>
+        </div>
+
+        <!-- How the Service Clock Works Educational Section -->
+        <section class="panel timeline-panel">
+          <div class="panel-heading">
+            <div>
+              <h2>How the Service Guarantee Clock Works</h2>
+              <p>Under the Public Service Guarantee Act (RTS), statutory service commitments become predictable workflows.</p>
+            </div>
+            <span class="mini-tag">Statutory 15-day service model</span>
+          </div>
+          <div class="service-timeline">
+            <div class="timeline-step complete">
+              <span class="step-marker">✓</span>
+              <div>
+                <strong>Day 0</strong>
+                <b>Application Submitted</b>
+                <small>Receipt issued, tracking reference generated, statutory clock starts.</small>
+              </div>
+            </div>
+            <div class="timeline-step complete">
+              <span class="step-marker">✓</span>
+              <div>
+                <strong>Day 1–10</strong>
+                <b>Verification & Processing</b>
+                <small>Assigned desk scrutinises documents; progress visibility provided.</small>
+              </div>
+            </div>
+            <div class="timeline-step current">
+              <span class="step-marker">!</span>
+              <div>
+                <strong>Day 10–15</strong>
+                <b>Due Soon Alert Window</b>
+                <small>High-priority alert to citizen and supervisor to prevent breach.</small>
+              </div>
+            </div>
+            <div class="timeline-step overdue-step">
+              <span class="step-marker">⚖</span>
+              <div>
+                <strong>Day 15+</strong>
+                <b>Statutory Breach & Appeal</b>
+                <small>Citizen is legally empowered to file a First Appeal with automated grounds.</small>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- ==================== VIEW 2: OFFICER RADAR ==================== -->
+      <section class="view" id="view-officer" aria-labelledby="officerHeading">
+        <div class="welcome-row">
+          <div>
+            <div class="eyebrow">OFFICE OPERATIONS / MAHARASHTRA RTS</div>
+            <h1 id="officerHeading">Officer <span>radar.</span></h1>
+            <p class="subhead">Supervise queue health, prevent statutory deadline breaches, and resolve at-risk cases.</p>
+          </div>
+          <button class="primary-btn" id="exportCasesBtn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Export case list</span>
+          </button>
+        </div>
+
+        <div class="stat-grid">
+          <article class="stat-card">
+            <div class="stat-top">
+              <span>Assigned Cases</span>
+              <span class="stat-icon blue">▤</span>
+            </div>
+            <div class="stat-value" id="officerTotalCount">128</div>
+            <div class="stat-foot">Active across 4 desks</div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-top">
+              <span>Due in ≤ 5 Days</span>
+              <span class="stat-icon amber">◷</span>
+            </div>
+            <div class="stat-value" id="officerDueSoonCount">18</div>
+            <div class="stat-foot"><span class="warning-text">Prioritise today</span></div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-top">
+              <span>Overdue (Breached)</span>
+              <span class="stat-icon red">!</span>
+            </div>
+            <div class="stat-value" id="officerOverdueCount">07</div>
+            <div class="stat-foot"><span class="danger-text">Requires immediate resolution</span></div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-top">
+              <span>Resolved This Week</span>
+              <span class="stat-icon green">✓</span>
+            </div>
+            <div class="stat-value">34</div>
+            <div class="stat-foot"><span class="positive">↑ 12%</span> <span>vs last week</span></div>
+          </article>
+        </div>
+
+        <div class="content-grid officer-grid">
+          <section class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Cases Needing Immediate Attention</h2>
+                <p>Prioritised by deadline severity and grievance risk.</p>
+              </div>
+              <div class="panel-heading-actions">
+                <select id="officerFilter" aria-label="Filter officer cases">
+                  <option value="all">All cases</option>
+                  <option value="At risk">Due soon (At risk)</option>
+                  <option value="Breached">Overdue (Breached)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="case-list" id="officerCases"></div>
+          </section>
+
+          <aside class="panel office-summary">
+            <div class="panel-heading">
+              <div>
+                <h2>Office Health Index</h2>
+                <p>Statutory compliance rate.</p>
+              </div>
+            </div>
+            <div class="health-score">
+              <div class="score-number">94<span>/100</span></div>
+              <span class="badge on-track">High Compliance</span>
+            </div>
+            <div class="score-bar"><span style="width: 94%"></span></div>
+            <p class="muted-copy">94% of applications are being processed strictly within notified timeframes.</p>
+            <div class="summary-line">
+              <span>Within deadline</span>
+              <strong class="positive">87%</strong>
+            </div>
+            <div class="summary-line">
+              <span>At risk (Due soon)</span>
+              <strong class="warning-text">9%</strong>
+            </div>
+            <div class="summary-line">
+              <span>Overdue</span>
+              <strong class="danger-text">4%</strong>
+            </div>
+            <button class="secondary-btn full-width" id="officeReportBtn">
+              Download office report <span aria-hidden="true">→</span>
+            </button>
+          </aside>
+        </div>
+
+        <!-- Verified Deadline Rule Registry -->
+        <section class="panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Statutory Service Rule Registry</h2>
+              <p>Official timelines notified under Right to Public Service Acts.</p>
+            </div>
+            <span class="mini-tag">Official Gazette Standards</span>
+          </div>
+          <div class="policy-row">
+            <div class="policy-icon">⚖</div>
+            <div class="policy-text">
+              <strong>Income Certificate</strong>
+              <span>15 calendar days · Tahsildar / Nayab Tahsildar</span>
+            </div>
+            <span class="badge on-track">Gazette approved</span>
+            <button class="quiet-btn" id="policyBtn">View details →</button>
+          </div>
+          <div class="policy-row">
+            <div class="policy-icon">⌁</div>
+            <div class="policy-text">
+              <strong>Caste Certificate</strong>
+              <span>21 working days · Sub-Divisional Officer (SDO)</span>
+            </div>
+            <span class="badge neutral">Draft rule</span>
+            <button class="quiet-btn" id="draftRuleBtn">Review rule →</button>
+          </div>
+        </section>
+      </section>
+
+      <!-- ==================== VIEW 3: COMMISSION OVERVIEW ==================== -->
+      <section class="view" id="view-commission" aria-labelledby="commissionHeading">
+        <div class="welcome-row">
+          <div>
+            <div class="eyebrow">OVERSIGHT & PUBLIC ACCOUNTABILITY</div>
+            <h1 id="commissionHeading">Commission <span>overview.</span></h1>
+            <p class="subhead">Understand service bottlenecks across districts, audit compliance, and identify intervention points.</p>
+          </div>
+          <button class="primary-btn" id="commissionReportBtn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Download overview CSV</span>
+          </button>
+        </div>
+
+        <div class="stat-grid">
+          <article class="stat-card">
+            <div class="stat-top">
+              <span>Cases Monitored</span>
+              <span class="stat-icon blue">▤</span>
+            </div>
+            <div class="stat-value">12,480</div>
+            <div class="stat-foot">Across 12 demo offices</div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-top">
+              <span>Late Disposal Rate</span>
+              <span class="stat-icon amber">◷</span>
+            </div>
+            <div class="stat-value">8.4%</div>
+            <div class="stat-foot"><span class="warning-text">Needs monitoring</span></div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-top">
+              <span>Appeals Initiated</span>
+              <span class="stat-icon blue">↗</span>
+            </div>
+            <div class="stat-value">846</div>
+            <div class="stat-foot">Sample reporting cycle</div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-top">
+              <span>Offices on Track</span>
+              <span class="stat-icon green">✓</span>
+            </div>
+            <div class="stat-value">9 / 12</div>
+            <div class="stat-foot"><span class="positive">75% compliance</span></div>
+          </article>
+        </div>
+
+        <div class="content-grid commission-grid">
+          <section class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>District Performance Map</h2>
+                <p>Interactive district breakdown (Click pins to inspect regional figures).</p>
+              </div>
+              <span class="mini-tag">Illustrative GIS</span>
+            </div>
+            <div class="district-map" aria-label="Illustrative district performance map">
+              <div class="map-grid"></div>
+              <div class="map-water"></div>
+              <div class="district-shape shape-one"></div>
+              <div class="district-shape shape-two"></div>
+              <div class="district-shape shape-three"></div>
+              <div class="district-shape shape-four"></div>
+              <div class="district-shape shape-five"></div>
+
+              <button class="map-pin pin-one" data-district="Pune" aria-label="Inspect Pune district" title="Pune District">P</button>
+              <button class="map-pin pin-two" data-district="Nashik" aria-label="Inspect Nashik district" title="Nashik District">N</button>
+              <button class="map-pin pin-three" data-district="Nagpur" aria-label="Inspect Nagpur district" title="Nagpur District">N</button>
+              <button class="map-pin pin-four" data-district="Mumbai" aria-label="Inspect Mumbai district" title="Mumbai District">M</button>
+              <button class="map-pin pin-five" data-district="Aurangabad" aria-label="Inspect Aurangabad district" title="Aurangabad District">A</button>
+
+              <div class="map-legend">
+                <span><i class="legend-green"></i> On track (&lt; 8% late)</span>
+                <span><i class="legend-amber"></i> Monitor (8–12%)</span>
+                <span><i class="legend-red"></i> Intervention (&gt; 12%)</span>
+              </div>
+              <span class="map-watermark">SAMAY · OVERSIGHT GIS</span>
+            </div>
+
+            <div class="district-detail" id="districtDetail">
+              <div>
+                <strong>Pune district</strong>
+                <span>Selected jurisdiction · sample figures</span>
+              </div>
+              <div>
+                <strong class="positive">6.2%</strong>
+                <span>Late rate</span>
+              </div>
+              <div>
+                <strong>92%</strong>
+                <span>Within deadline</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Delay Indicators Bar Chart -->
+          <aside class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Delay Breakdown by Service</h2>
+                <p>Proportion of delayed applications.</p>
+              </div>
+              <button class="quiet-btn" id="chartDetailsBtn">Details ↗</button>
+            </div>
+            <div class="bar-chart" aria-label="Service delay distribution chart">
+              <div class="chart-y">
+                <span>20%</span>
+                <span>15%</span>
+                <span>10%</span>
+                <span>5%</span>
+                <span>0%</span>
+              </div>
+              <div class="chart-area">
+                <div class="chart-gridlines">
+                  <i></i><i></i><i></i><i></i><i></i>
+                </div>
+                <div class="chart-bars">
+                  <div class="bar-group">
+                    <div class="bar" style="height:72%" title="Income: 14.4% late"></div>
+                    <span>Income</span>
+                  </div>
+                  <div class="bar-group">
+                    <div class="bar amber-bar" style="height:48%" title="Caste: 9.6% late"></div>
+                    <span>Caste</span>
+                  </div>
+                  <div class="bar-group">
+                    <div class="bar red-bar" style="height:83%" title="Land records: 16.6% late"></div>
+                    <span>Land</span>
+                  </div>
+                  <div class="bar-group">
+                    <div class="bar green-bar" style="height:32%" title="Birth registration: 6.4% late"></div>
+                    <span>Birth</span>
+                  </div>
+                  <div class="bar-group">
+                    <div class="bar amber-bar" style="height:55%" title="Others: 11.0% late"></div>
+                    <span>Other</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="chart-note">
+              <span class="tiny-dot blue-dot"></span> Indicative sample analytics for governance demonstration
+            </div>
+          </aside>
+        </div>
+
+        <!-- Office Accountability Table -->
+        <section class="panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Office Accountability & Disposal Performance</h2>
+              <p>Audit performance metrics across individual administrative units.</p>
+            </div>
+            <label class="search-box compact-search">
+              <span aria-hidden="true">⌕</span>
+              <input id="officeSearch" type="search" placeholder="Search offices..." aria-label="Search offices" />
+            </label>
+          </div>
+          <div class="table-wrap">
+            <table aria-label="Office accountability table">
+              <thead>
+                <tr>
+                  <th scope="col">Office / District</th>
+                  <th scope="col">Cases Reviewed</th>
+                  <th scope="col">Late Rate</th>
+                  <th scope="col">Appeals Filed</th>
+                  <th scope="col">Compliance Score</th>
+                </tr>
+              </thead>
+              <tbody id="officeRows"></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+
+      <!-- Site Footer -->
+      <footer class="footer">
+        <div class="footer-left">
+          <span>© 2026 <strong>SAMAY</strong> — Citizen Public Service Deadline Tracker</span>
+          <span class="footer-badge">Civic Tech Prototype</span>
+        </div>
+        <div class="footer-right">
+          <span><span class="footer-dot"></span> Demonstration mode · Not affiliated with official state IT infrastructure</span>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Shared Modal Dialog Component -->
+  <div class="modal-backdrop hidden" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <div class="modal-head">
+        <div>
+          <span class="eyebrow">SAMAY WORKSPACE</span>
+          <h2 id="modalTitle">Track an application</h2>
+        </div>
+        <button class="close-modal" id="closeModalBtn" aria-label="Close dialog">✕</button>
+      </div>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Message Container -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Core JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
