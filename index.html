@@ -4,19 +4,914 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0f233d" />
-  <meta name="description" content="SAMAY — Public Service Guarantee Act & Citizen Service Deadline Tracker. Monitor service promises, prevent statutory breaches, and automate appeal drafts." />
-  <title>SAMAY — Public Service Deadline Tracker</title>
+  <meta name="description" content="SAMAY — “UPI for Service Promises”. Digital public service delivery tracking, statutory deadline monitoring, and citizen rights empowerment under the Right to Public Services Act." />
+  <title>SAMAY — UPI for Service Promises | Public Service Deadline Tracker</title>
+  
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Mobile Sidebar Backdrop -->
-  <div class="sidebar-backdrop hidden" id="sidebarBackdrop" aria-hidden="true"></div>
+  <!-- =========================================================================
+       1. LANDING PAGE VIEW (Default Public View)
+       ========================================================================= -->
+  <div id="landingPage" class="landing-page-wrapper">
+    <!-- Sticky Navigation Bar -->
+    <header class="site-header" id="siteHeader">
+      <div class="nav-container">
+        <a class="nav-brand" href="#hero" aria-label="SAMAY home">
+          <span class="brand-emblem">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </span>
+          <div class="brand-titles">
+            <span class="brand-title">SAMAY</span>
+            <span class="brand-tagline">UPI for Service Promises</span>
+          </div>
+        </a>
 
-  <div class="app-shell">
+        <!-- Desktop Navigation Links -->
+        <nav class="desktop-nav" aria-label="Main Navigation">
+          <a href="#hero" class="nav-link active">Home</a>
+          <a href="#slip-scanner" class="nav-link">Slip Scanner</a>
+          <a href="#how-it-works" class="nav-link">How It Works</a>
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#citizen-rights" class="nav-link">Citizen Rights</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+
+        <!-- Navbar Action Buttons -->
+        <div class="nav-actions">
+          <button class="nav-demo-btn" id="navLaunchDemoBtn" title="Launch Interactive Tracker Demo">
+            <span class="saffron-dot"></span> Explore Demo
+          </button>
+          <button class="nav-login-btn" id="navLoginBtn">
+            <span>Login / Get Started</span>
+          </button>
+          <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open mobile navigation menu" aria-expanded="false">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div class="mobile-drawer hidden" id="mobileDrawer">
+        <nav class="mobile-drawer-nav">
+          <a href="#hero" class="mobile-nav-link">Home</a>
+          <a href="#slip-scanner" class="mobile-nav-link">Slip Scanner</a>
+          <a href="#how-it-works" class="mobile-nav-link">How It Works</a>
+          <a href="#services" class="mobile-nav-link">Services</a>
+          <a href="#citizen-rights" class="mobile-nav-link">Citizen Rights</a>
+          <a href="#contact" class="mobile-nav-link">Contact</a>
+          <div class="mobile-drawer-actions">
+            <button class="primary-btn full-width" id="mobileCitizenLoginBtn">Citizen Login</button>
+            <button class="secondary-btn full-width" id="mobileOfficerLoginBtn">Officer Portal</button>
+            <button class="saffron-btn full-width" id="mobileLaunchDemoBtn">Launch Interactive Demo</button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="hero-ambient-bg"></div>
+      <div class="container hero-container">
+        <div class="hero-header">
+          <div class="hero-badge">
+            <span class="badge-flag-strip"></span>
+            <span>TRANSPARENT GOVERNANCE. ACCOUNTABLE SERVICES.</span>
+          </div>
+          <h1 class="hero-title">
+            Every Public Service. Every Deadline. <span class="highlight-saffron">Accountable.</span>
+          </h1>
+          <p class="hero-subtext">
+            Your rights. Your timelines. Your government services — all in one place. Track applications, understand service deadlines, and take action when services are delayed.
+          </p>
+        </div>
+
+        <!-- Three Hero Action Cards (Above the Fold) -->
+        <div class="hero-action-grid">
+          <!-- Card A: Citizen Login -->
+          <div class="hero-action-card card-citizen">
+            <div class="action-card-icon user-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div class="action-card-content">
+              <h3>Citizen Login</h3>
+              <p>Apply for services, track applications, and understand your statutory rights.</p>
+            </div>
+            <button class="action-card-btn btn-citizen" id="heroCitizenBtn">
+              <span>Continue as Citizen</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Card B: Officer Portal -->
+          <div class="hero-action-card card-officer">
+            <div class="action-card-icon shield-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <polyline points="9 12 11 14 15 10"></polyline>
+              </svg>
+            </div>
+            <div class="action-card-content">
+              <h3>Officer Portal</h3>
+              <p>Manage applications, monitor deadlines, and update service requests.</p>
+            </div>
+            <button class="action-card-btn btn-officer" id="heroOfficerBtn">
+              <span>Continue as Officer</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Card C: Explore Demo -->
+          <div class="hero-action-card card-demo highlight-card">
+            <div class="action-card-badge">Instant Access</div>
+            <div class="action-card-icon play-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </div>
+            <div class="action-card-content">
+              <h3>Explore Demo</h3>
+              <p>Experience how SAMAY works with sample applications and simulated workflows.</p>
+            </div>
+            <button class="action-card-btn btn-demo" id="heroDemoBtn">
+              <span>Launch Demo</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Trust Features Strip -->
+        <div class="hero-trust-strip">
+          <div class="trust-item">
+            <span class="trust-check">✓</span>
+            <span>Right to Public Service (RTS) Guarantee</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-check">✓</span>
+            <span>Automated Section 8 First Appeal Drafts</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-check">✓</span>
+            <span>No Registration Required for Demo</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-check">✓</span>
+            <span>Bilingual Voice Assistant (English / हिन्दी)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Slip Scanner Section: "Start Clock from Slip" -->
+    <section class="section slip-scanner-section" id="slip-scanner">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">INSTANT RECEIPT CLOCK</span>
+          <h2 class="section-title">Start Clock from Acknowledgement Slip</h2>
+          <p class="section-description">
+            Turn any physical receipt or online acknowledgement slip into an automated statutory deadline clock. Upload a photo, speak the details, or paste receipt text.
+          </p>
+        </div>
+
+        <div class="slip-clock-container">
+          <!-- Card 1: Start clock from slip -->
+          <div class="slip-card">
+            <div class="slip-card-header">
+              <div class="card-step-badge">1</div>
+              <h3 class="card-step-title">Start clock from slip</h3>
+            </div>
+
+            <!-- Photo & Speak Buttons -->
+            <div class="slip-tool-row">
+              <input type="file" id="slipPhotoInput" accept="image/*,.pdf" capture="environment" hidden />
+              <button type="button" class="slip-tool-btn" id="slipPhotoBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                  <circle cx="12" cy="13" r="4"></circle>
+                </svg>
+                <span>Photo of slip</span>
+              </button>
+
+              <button type="button" class="slip-tool-btn" id="slipVoiceBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                  <line x1="12" y1="19" x2="12" y2="23"></line>
+                  <line x1="8" y1="23" x2="16" y2="23"></line>
+                </svg>
+                <span>Speak slip text</span>
+              </button>
+            </div>
+
+            <!-- Paste Slip Text Area -->
+            <label class="slip-field-label" for="slipTextInput">PASTE THE SLIP TEXT</label>
+            <textarea id="slipTextInput" class="slip-textarea" rows="4" placeholder="e.g. Service: Income Certificate&#10;Application No: MH20261234567&#10;Date: 05/10/2026"></textarea>
+
+            <!-- Load Sample & Read Slip Buttons -->
+            <div class="slip-textarea-actions">
+              <button type="button" class="slip-sub-btn" id="slipLoadSampleBtn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                <span>Load sample slip</span>
+              </button>
+
+              <button type="button" class="slip-parse-btn" id="slipParseBtn">Read slip text</button>
+            </div>
+
+            <!-- Extracted / Editable Form Fields -->
+            <div class="slip-form-fields">
+              <div class="slip-field-group">
+                <label class="slip-field-label" for="slipServiceSelect">SERVICE</label>
+                <select id="slipServiceSelect">
+                  <option value="">Choose...</option>
+                  <option value="Income Certificate">Income Certificate (15 Days Max)</option>
+                  <option value="Caste Certificate">Caste Certificate (21 Days Max)</option>
+                  <option value="Domicile Certificate">Domicile / Residence Certificate (15 Days Max)</option>
+                  <option value="Birth Certificate">Birth &amp; Death Registration (7 Days Max)</option>
+                  <option value="Land Mutation">Land Mutation / 7/12 Extract (30 Days Max)</option>
+                  <option value="Ration Card">Ration Card Addition / Modification (21 Days Max)</option>
+                </select>
+              </div>
+
+              <div class="slip-row-2col">
+                <div class="slip-field-group">
+                  <label class="slip-field-label" for="slipAppNoInput">APPLICATION NO.</label>
+                  <input type="text" id="slipAppNoInput" placeholder="e.g. MH20261234567" />
+                </div>
+
+                <div class="slip-field-group">
+                  <label class="slip-field-label" for="slipDateInput">DATE RECEIVED</label>
+                  <input type="date" id="slipDateInput" />
+                </div>
+              </div>
+
+              <div class="slip-field-group">
+                <label class="slip-field-label" for="slipOfficeInput">OFFICE</label>
+                <input type="text" id="slipOfficeInput" placeholder="e.g. Nayab Tahsildar Office, Pune" />
+              </div>
+
+              <button type="button" class="primary-btn saffron-btn full-width" id="slipStartClockBtn" style="margin-top: 14px;">
+                <span>Start Service Clock →</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2: Clock and deadline -->
+          <div class="slip-card slip-card-clock">
+            <div class="slip-card-header">
+              <div class="card-step-badge">2</div>
+              <h3 class="card-step-title">Clock and deadline</h3>
+            </div>
+
+            <div class="clock-display-panel" id="slipClockDisplay">
+              <div class="clock-gauge-wrap">
+                <div class="clock-ring-outer" id="slipGaugeRing">
+                  <div class="clock-ring-inner">
+                    <span class="clock-days-number" id="slipClockDays">15</span>
+                    <span class="clock-days-label" id="slipClockDaysLabel">days left</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="clock-meta-box">
+                <div class="clock-meta-row">
+                  <span>Service</span>
+                  <strong id="slipClockService">Income Certificate</strong>
+                </div>
+                <div class="clock-meta-row">
+                  <span>Application No.</span>
+                  <strong id="slipClockAppNo">MH20261234567</strong>
+                </div>
+                <div class="clock-meta-row">
+                  <span>Statutory Deadline</span>
+                  <strong id="slipClockDeadlineDate" class="highlight-deadline">—</strong>
+                </div>
+                <div class="clock-meta-row">
+                  <span>Current Status</span>
+                  <span class="badge on-track" id="slipClockStatusBadge">Clock Running · On Track</span>
+                </div>
+              </div>
+
+              <div class="clock-legal-note">
+                <span class="legal-icon">⚖</span>
+                <p><strong>Statutory Guarantee:</strong> Under the Maharashtra Right to Public Services Act, this service is guaranteed within <span id="slipClockTurnaround">15 days</span>. If breached, citizen is legally entitled to an expedited First Appeal under Section 8.</p>
+              </div>
+
+              <div class="clock-action-buttons">
+                <button type="button" class="primary-btn saffron-btn full-width" id="slipSaveToTrackerBtn">
+                  Save to My Applications ＋
+                </button>
+                <button type="button" class="secondary-btn full-width" id="slipOpenDashboardBtn">
+                  Open in Citizen Dashboard →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section how-it-works-section" id="how-it-works">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">STEP-BY-STEP WORKFLOW</span>
+          <h2 class="section-title">How SAMAY Guarantees Service Timelines</h2>
+          <p class="section-description">
+            Just like UPI standardized digital money transfers, SAMAY creates a transparent, interoperable protocol for government service delivery commitments.
+          </p>
+        </div>
+
+        <div class="timeline-stepper">
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <div class="step-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+            </div>
+            <h4>Choose a Service</h4>
+            <p>Select any notified state citizen service. Check verified statutory turnaround days mandated by law.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <div class="step-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 11 12 14 22 4"></polyline>
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+              </svg>
+            </div>
+            <h4>Submit &amp; Get Reference</h4>
+            <p>Submit your application at a Seva Kendra or online portal. Receive your unique acknowledgement receipt.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <div class="step-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h4>Track Progress &amp; Clocks</h4>
+            <p>SAMAY locks in the statutory delivery date. Proactive color-coded alerts notify you as deadlines approach.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">04</div>
+            <div class="step-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <h4>File Automated Appeal</h4>
+            <p>If statutory limits are breached, SAMAY auto-drafts your official First Appeal citing Section 8 provisions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="section features-section" id="features">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">BUILT FOR CITIZENS &amp; ADMINISTRATORS</span>
+          <h2 class="section-title">Core Capabilities of the SAMAY Platform</h2>
+          <p class="section-description">
+            A unified digital governance ecosystem designed to transform public service delivery from passive waiting into deterministic accountability.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <!-- Feature 1 -->
+          <div class="feature-card">
+            <div class="feature-icon icon-blue">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            <h3>Application Tracking</h3>
+            <p>Track any state government certificate, permit, or welfare application with live status indicators and desk-level accountability.</p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="feature-card">
+            <div class="feature-icon icon-saffron">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 14 10"></polyline>
+              </svg>
+            </div>
+            <h3>Service Deadline Monitoring</h3>
+            <p>Dynamic service clocks calculate exact days remaining using gazetted legal turnaround times, not vague estimates.</p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="feature-card">
+            <div class="feature-icon icon-green">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3>Citizen Rights Information</h3>
+            <p>Demystify the Right to Public Services Act. Learn designated appellate authorities, penalty clauses, and required document checklists.</p>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="feature-card">
+            <div class="feature-icon icon-amber">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+            </div>
+            <h3>Proactive Delay Alerts</h3>
+            <p>Automated warning states trigger 5 days before statutory deadlines, prompting administrative desks to clear pendency.</p>
+          </div>
+
+          <!-- Feature 5 -->
+          <div class="feature-card">
+            <div class="feature-icon icon-purple">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </div>
+            <h3>Grievance &amp; Appeal Guidance</h3>
+            <p>Instant legal drafting assistant formats statutory First Appeal petitions with one-click clipboard copy and text export.</p>
+          </div>
+
+          <!-- Feature 6 -->
+          <div class="feature-card">
+            <div class="feature-icon icon-saffron-light">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" y1="19" x2="12" y2="23"></line>
+                <line x1="8" y1="23" x2="16" y2="23"></line>
+              </svg>
+            </div>
+            <h3>Voice-Based Assistance</h3>
+            <p>Bilingual voice queries via Web Speech API in English and Hindi ensure universal accessibility across all literacy levels.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Popular Services Directory Section -->
+    <section class="section services-section" id="services">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">STATUTORY SERVICE CATALOG</span>
+          <h2 class="section-title">Notified Citizen Services &amp; Delivery Windows</h2>
+          <p class="section-description">
+            Under the Right to Public Services Act, each service has a legally mandated maximum completion timeframe.
+          </p>
+        </div>
+
+        <div class="services-search-bar">
+          <div class="service-search-input-wrap">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="search" id="serviceCatalogSearch" placeholder="Search service e.g. Income, Caste, Domicile, Ration..." aria-label="Search statutory services" />
+          </div>
+        </div>
+
+        <div class="services-grid" id="servicesGrid">
+          <!-- Service 1 -->
+          <div class="service-card" data-service-name="income certificate">
+            <div class="service-card-top">
+              <span class="service-category-tag">Revenue</span>
+              <span class="service-days-badge">15 Days Max</span>
+            </div>
+            <h4>Income Certificate</h4>
+            <p>Required for scholarships, fee concessions, and government welfare eligibility.</p>
+            <div class="service-card-meta">
+              <span><strong>Authority:</strong> Nayab Tahsildar</span>
+              <span><strong>Appeal:</strong> SDO Office</span>
+            </div>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="service-card" data-service-name="caste certificate">
+            <div class="service-card-top">
+              <span class="service-category-tag">Social Justice</span>
+              <span class="service-days-badge">21 Days Max</span>
+            </div>
+            <h4>Caste Certificate</h4>
+            <p>Official verification for affirmative action, constitutional benefits, and admissions.</p>
+            <div class="service-card-meta">
+              <span><strong>Authority:</strong> SDO / Sub-Divisional Officer</span>
+              <span><strong>Appeal:</strong> Scrutiny Committee</span>
+            </div>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="service-card" data-service-name="domicile certificate">
+            <div class="service-card-top">
+              <span class="service-category-tag">Revenue</span>
+              <span class="service-days-badge">15 Days Max</span>
+            </div>
+            <h4>Domicile / Residence Certificate</h4>
+            <p>Proof of permanent residence for state educational quotas and government employment.</p>
+            <div class="service-card-meta">
+              <span><strong>Authority:</strong> Executive Magistrate</span>
+              <span><strong>Appeal:</strong> Tahsildar Desk</span>
+            </div>
+          </div>
+
+          <!-- Service 4 -->
+          <div class="service-card" data-service-name="birth death certificate">
+            <div class="service-card-top">
+              <span class="service-category-tag">Registration</span>
+              <span class="service-days-badge">7 Days Max</span>
+            </div>
+            <h4>Birth &amp; Death Registration</h4>
+            <p>Vital event certification for citizenship, identity issuance, and family succession.</p>
+            <div class="service-card-meta">
+              <span><strong>Authority:</strong> Municipal Health Officer</span>
+              <span><strong>Appeal:</strong> Municipal Commissioner</span>
+            </div>
+          </div>
+
+          <!-- Service 5 -->
+          <div class="service-card" data-service-name="land record mutation 7/12">
+            <div class="service-card-top">
+              <span class="service-category-tag">Land Records</span>
+              <span class="service-days-badge">30 Days Max</span>
+            </div>
+            <h4>Land Mutation (7/12 Extract)</h4>
+            <p>Recording property inheritance, agricultural land transfers, and land rights entries.</p>
+            <div class="service-card-meta">
+              <span><strong>Authority:</strong> Circle Officer / Talathi</span>
+              <span><strong>Appeal:</strong> Tahsildar</span>
+            </div>
+          </div>
+
+          <!-- Service 6 -->
+          <div class="service-card" data-service-name="ration card">
+            <div class="service-card-top">
+              <span class="service-category-tag">Food &amp; Supplies</span>
+              <span class="service-days-badge">21 Days Max</span>
+            </div>
+            <h4>Ration Card Addition / Modification</h4>
+            <p>Inclusion of new family members, address changes, or category conversion.</p>
+            <div class="service-card-meta">
+              <span><strong>Authority:</strong> Food &amp; Supplies Officer</span>
+              <span><strong>Appeal:</strong> District Supply Officer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Citizen Rights & Legal Framework Section -->
+    <section class="section rights-section" id="citizen-rights">
+      <div class="container">
+        <div class="rights-layout">
+          <div class="rights-content">
+            <span class="section-eyebrow">LEGAL EMPOWERMENT</span>
+            <h2 class="section-title">Your Rights Under the Right to Public Services Act</h2>
+            <p class="rights-lead">
+              The Right to Public Services (RTS) legislation transforms administrative services from discretionary favors into legally enforceable citizen rights.
+            </p>
+
+            <div class="rights-checklist">
+              <div class="rights-check-item">
+                <div class="rights-check-bullet">⚖</div>
+                <div>
+                  <strong>Right to a Time-Bound Decision</strong>
+                  <p>Every citizen who applies with required documents is legally guaranteed disposal within the notified timeframe.</p>
+                </div>
+              </div>
+
+              <div class="rights-check-item">
+                <div class="rights-check-bullet">📋</div>
+                <div>
+                  <strong>Mandatory Reason for Rejection</strong>
+                  <p>No desk can arbitrarily reject an application without documenting specific legal grounds in writing.</p>
+                </div>
+              </div>
+
+              <div class="rights-check-item">
+                <div class="rights-check-bullet">⚡</div>
+                <div>
+                  <strong>First Appeal Entitlement (Section 8)</strong>
+                  <p>If the delivery date expires without disposal, citizens hold an uninhibited right to file a First Appeal to senior authorities.</p>
+                </div>
+              </div>
+
+              <div class="rights-check-item">
+                <div class="rights-check-bullet">🛡</div>
+                <div>
+                  <strong>Officer Penalty Clause</strong>
+                  <p>Appellate authorities have the statutory power to deduct compensatory penalties from defaulting officers' salaries.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="rights-card-graphic">
+            <div class="rights-glass-card">
+              <div class="rights-card-header">
+                <span class="emblem-shield">🏛</span>
+                <div>
+                  <strong>Statutory Guarantee Model</strong>
+                  <small>Maharashtra RTS Act &amp; National Standards</small>
+                </div>
+              </div>
+              <div class="rights-stat-block">
+                <div class="stat-highlight">
+                  <span>Standard Maximum Window</span>
+                  <strong>15 Days</strong>
+                </div>
+                <div class="stat-highlight">
+                  <span>First Appeal Window</span>
+                  <strong>30 Days</strong>
+                </div>
+              </div>
+              <div class="rights-card-quote">
+                “Government officers are public servants entrusted with fiduciary delivery promises. Every delay without cause is an administrative breach.”
+              </div>
+              <button class="primary-btn full-width" id="rightsSectionLearnBtn">Read Rule Registry Rules →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live-Looking Demo Preview Section -->
+    <section class="section demo-preview-section" id="demo-preview">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">INTERACTIVE SYSTEM SIMULATION</span>
+          <h2 class="section-title">Live-Looking Dashboard Preview</h2>
+          <p class="section-description">
+            Experience the real-time deadline monitoring interface used by citizens and administration desks.
+          </p>
+        </div>
+
+        <div class="demo-preview-wrapper">
+          <div class="demo-preview-card">
+            <div class="demo-preview-topbar">
+              <div class="demo-pill-badge">
+                <span class="pulse-green"></span>
+                <span>DEMO DATA · SIMULATED DASHBOARD</span>
+              </div>
+              <div class="demo-preview-meta">
+                <span>Active Workspace: <strong>Maharashtra District Pilot</strong></span>
+              </div>
+            </div>
+
+            <div class="demo-preview-table-wrap">
+              <table class="preview-table">
+                <thead>
+                  <tr>
+                    <th>Application ID</th>
+                    <th>Service Name</th>
+                    <th>Submission Date</th>
+                    <th>Statutory Deadline</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>SAM-2048</code></td>
+                    <td><strong>Income Certificate</strong></td>
+                    <td>16 Oct 2026</td>
+                    <td>31 Oct 2026</td>
+                    <td><span class="badge at-risk">Due Soon (4 days)</span></td>
+                    <td><button class="preview-action-btn" data-demo-open="SAM-2048">Inspect Case →</button></td>
+                  </tr>
+                  <tr>
+                    <td><code>SAM-1987</code></td>
+                    <td><strong>Caste Certificate</strong></td>
+                    <td>02 Oct 2026</td>
+                    <td>17 Oct 2026</td>
+                    <td><span class="badge breached">Overdue (10 days)</span></td>
+                    <td><button class="preview-action-btn" data-demo-open="SAM-1987">Inspect Case →</button></td>
+                  </tr>
+                  <tr>
+                    <td><code>SAM-2031</code></td>
+                    <td><strong>Residence Certificate</strong></td>
+                    <td>22 Oct 2026</td>
+                    <td>06 Nov 2026</td>
+                    <td><span class="badge on-track">In Progress (10 days)</span></td>
+                    <td><button class="preview-action-btn" data-demo-open="SAM-2031">Inspect Case →</button></td>
+                  </tr>
+                  <tr>
+                    <td><code>SAM-1940</code></td>
+                    <td><strong>Domicile Certificate</strong></td>
+                    <td>05 Oct 2026</td>
+                    <td>20 Oct 2026</td>
+                    <td><span class="badge completed">Completed (On Time)</span></td>
+                    <td><button class="preview-action-btn" data-demo-open="SAM-1940">Inspect Case →</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="demo-preview-footer">
+              <p>All records above are mock records for demonstration. Open the full interactive dashboard to filter, sort, add applications, and download CSV reports.</p>
+              <button class="primary-btn saffron-btn" id="previewLaunchFullBtn">
+                <span>Launch Full Interactive Tracker →</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Citizen Support Section -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <span class="section-eyebrow">CITIZEN SUPPORT &amp; FEEDBACK</span>
+            <h2 class="section-title">Need Guidance on Service Timelines?</h2>
+            <p class="contact-description">
+              Our facilitation desk helps citizens understand their rights, locate the appropriate competent authority, and follow up on delayed applications.
+            </p>
+
+            <div class="contact-details-list">
+              <div class="contact-detail-item">
+                <span class="contact-icon">📞</span>
+                <div>
+                  <strong>National RTS Helpline (Demonstration)</strong>
+                  <p>1800-RTS-SAMAY (Toll-free, 9:00 AM – 6:00 PM IST)</p>
+                </div>
+              </div>
+              <div class="contact-detail-item">
+                <span class="contact-icon">✉️</span>
+                <div>
+                  <strong>Citizen Assistance Email</strong>
+                  <p>support@samay-tracker.gov.in (Simulated Helpdesk)</p>
+                </div>
+              </div>
+              <div class="contact-detail-item">
+                <span class="contact-icon">🏢</span>
+                <div>
+                  <strong>District Facilitation Kendras</strong>
+                  <p>Available at all Sub-Divisional Officer (SDO) and Tahsildar complexes</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form-card">
+            <h3>Send a Query or Grievance Alert</h3>
+            <p class="form-subhead">Fill out this simulated form for citizen assistance.</p>
+            <form id="landingContactForm" novalidate>
+              <div class="form-group">
+                <label for="contactName">Your Full Name *</label>
+                <input type="text" id="contactName" placeholder="Enter your full name" required />
+                <span class="field-error-msg hidden" id="errContactName"></span>
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">Phone / Email *</label>
+                <input type="text" id="contactEmail" placeholder="Mobile number or email address" required />
+                <span class="field-error-msg hidden" id="errContactEmail"></span>
+              </div>
+              <div class="form-group">
+                <label for="contactService">Relevant Service or Reference</label>
+                <input type="text" id="contactService" placeholder="e.g. Income Certificate or SAM-2048" />
+              </div>
+              <div class="form-group">
+                <label for="contactMessage">Describe Your Issue *</label>
+                <textarea id="contactMessage" rows="3" placeholder="Tell us how we can help..." required></textarea>
+                <span class="field-error-msg hidden" id="errContactMessage"></span>
+              </div>
+              <button type="submit" class="primary-btn full-width">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comprehensive Footer -->
+    <footer class="landing-footer">
+      <div class="container footer-container">
+        <div class="footer-top-grid">
+          <!-- Col 1: Brand Info -->
+          <div class="footer-col brand-col">
+            <div class="footer-brand">
+              <span class="brand-emblem-small">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </span>
+              <strong>SAMAY</strong>
+            </div>
+            <p class="footer-description">
+              “UPI for Service Promises” — Statutory Accountability &amp; Monitoring of Administrative Yield. Empowering citizens through visible, deterministic public service guarantees.
+            </p>
+            <div class="footer-badges">
+              <span class="gov-tech-pill">Civic Tech Prototype</span>
+              <span class="gov-tech-pill">RTS Compliant</span>
+            </div>
+          </div>
+
+          <!-- Col 2: Navigation -->
+          <div class="footer-col">
+            <h5>Navigation</h5>
+            <ul class="footer-links">
+              <li><a href="#hero">Home</a></li>
+              <li><a href="#how-it-works">How It Works</a></li>
+              <li><a href="#features">Core Features</a></li>
+              <li><a href="#services">Service Catalog</a></li>
+              <li><a href="#citizen-rights">Citizen Rights</a></li>
+              <li><a href="#demo-preview">Demo Preview</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 3: Dashboards & Portals -->
+          <div class="footer-col">
+            <h5>Portals</h5>
+            <ul class="footer-links">
+              <li><button class="footer-link-btn" id="footerCitizenBtn">Citizen Dashboard</button></li>
+              <li><button class="footer-link-btn" id="footerOfficerBtn">Officer Radar</button></li>
+              <li><button class="footer-link-btn" id="footerCommissionBtn">Commission Map</button></li>
+              <li><button class="footer-link-btn" id="footerRuleRegistryBtn">Gazette Rule Registry</button></li>
+              <li><button class="footer-link-btn" id="footerResetDemoBtn">Reset Demo Data</button></li>
+            </ul>
+          </div>
+
+          <!-- Col 4: Legal & Disclaimer -->
+          <div class="footer-col">
+            <h5>Legal &amp; Policy</h5>
+            <ul class="footer-links">
+              <li><button class="footer-link-btn" id="footerPrivacyBtn">Privacy Policy</button></li>
+              <li><button class="footer-link-btn" id="footerTermsBtn">Terms of Service</button></li>
+              <li><button class="footer-link-btn" id="footerAccessibilityBtn">Accessibility Statement</button></li>
+            </ul>
+            <p class="footer-micro-disclaimer">
+              Service availability, deadlines, and appeal procedures depend on the respective state government department and notified Right to Public Services legislation.
+            </p>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-bottom-left">
+            <span>© 2026 <strong>SAMAY</strong>. Build for Bharat Hackathon. All rights reserved.</span>
+          </div>
+          <div class="footer-bottom-right">
+            <span>Demonstration prototype · Not affiliated with official state IT infrastructure</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- =========================================================================
+       2. INTERACTIVE WORKSPACE DASHBOARDS (Full Tracker Preserved)
+       ========================================================================= -->
+  <div id="workspaceApp" class="app-shell hidden">
+    <!-- Mobile Sidebar Backdrop -->
+    <div class="sidebar-backdrop hidden" id="sidebarBackdrop" aria-hidden="true"></div>
+
     <!-- Left Navigation Sidebar -->
     <aside class="sidebar" id="sidebar" aria-label="Main Navigation">
       <div class="sidebar-header">
-        <a class="brand" href="#" aria-label="SAMAY home">
+        <a class="brand" href="#" id="sidebarBrandBackHome" aria-label="SAMAY home">
           <span class="brand-mark">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"></circle>
@@ -29,6 +924,13 @@
           </span>
         </a>
         <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close menu">✕</button>
+      </div>
+
+      <!-- Quick Back to Portal Button in Sidebar -->
+      <div class="sidebar-portal-back">
+        <button class="back-portal-btn" id="sidebarBackToLandingBtn">
+          <span>← Back to Public Portal</span>
+        </button>
       </div>
 
       <div class="side-label">WORKSPACE DASHBOARDS</div>
@@ -110,6 +1012,9 @@
               <line x1="3" y1="18" x2="21" y2="18"></line>
             </svg>
           </button>
+          <button class="topbar-home-btn" id="topbarBackHomeBtn" title="Return to Public Landing Page">
+            <span>← Home Portal</span>
+          </button>
           <nav class="breadcrumbs" aria-label="Breadcrumb">
             <span>Workspace</span>
             <span class="crumb-sep" aria-hidden="true">/</span>
@@ -172,6 +1077,13 @@
             <p class="subhead">Track your public service promises, monitor statutory timelines, and take timely action.</p>
           </div>
           <div class="welcome-actions">
+            <button class="secondary-btn" id="dashScanSlipBtn" title="Start clock from acknowledgement receipt">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                <circle cx="12" cy="13" r="4"></circle>
+              </svg>
+              <span>Scan Slip</span>
+            </button>
             <button class="secondary-btn" id="exportCitizenCsvBtn" title="Export applications to CSV spreadsheet">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -327,7 +1239,7 @@
               <strong>No matching applications found</strong>
               <p>Try adjusting your search keywords, clearing status filters, or track a new application.</p>
               <div class="empty-actions">
-                <button class="secondary-btn" id="clearFiltersBtn">Clear search & filters</button>
+                <button class="secondary-btn" id="clearFiltersBtn">Clear search &amp; filters</button>
                 <button class="primary-btn" id="emptyTrackBtn">Track new application</button>
               </div>
             </div>
@@ -401,7 +1313,7 @@
               <span class="step-marker">✓</span>
               <div>
                 <strong>Day 1–10</strong>
-                <b>Verification & Processing</b>
+                <b>Verification &amp; Processing</b>
                 <small>Assigned desk scrutinises documents; progress visibility provided.</small>
               </div>
             </div>
@@ -417,7 +1329,7 @@
               <span class="step-marker">⚖</span>
               <div>
                 <strong>Day 15+</strong>
-                <b>Statutory Breach & Appeal</b>
+                <b>Statutory Breach &amp; Appeal</b>
                 <small>Citizen is legally empowered to file a First Appeal with automated grounds.</small>
               </div>
             </div>
@@ -565,7 +1477,7 @@
       <section class="view" id="view-commission" aria-labelledby="commissionHeading">
         <div class="welcome-row">
           <div>
-            <div class="eyebrow">OVERSIGHT & PUBLIC ACCOUNTABILITY</div>
+            <div class="eyebrow">OVERSIGHT &amp; PUBLIC ACCOUNTABILITY</div>
             <h1 id="commissionHeading">Commission <span>overview.</span></h1>
             <p class="subhead">Understand service bottlenecks across districts, audit compliance, and identify intervention points.</p>
           </div>
@@ -660,7 +1572,7 @@
               </div>
               <div>
                 <strong>92%</strong>
-                <span>Within deadline</span>
+                <span>Within statutory deadline</span>
               </div>
             </div>
           </section>
@@ -720,7 +1632,7 @@
         <section class="panel">
           <div class="panel-heading">
             <div>
-              <h2>Office Accountability & Disposal Performance</h2>
+              <h2>Office Accountability &amp; Disposal Performance</h2>
               <p>Audit performance metrics across individual administrative units.</p>
             </div>
             <label class="search-box compact-search">
@@ -745,7 +1657,7 @@
         </section>
       </section>
 
-      <!-- Site Footer -->
+      <!-- Site Footer inside workspace -->
       <footer class="footer">
         <div class="footer-left">
           <span>© 2026 <strong>SAMAY</strong> — Citizen Public Service Deadline Tracker</span>
@@ -758,7 +1670,212 @@
     </main>
   </div>
 
-  <!-- Shared Modal Dialog Component -->
+  <!-- =========================================================================
+       3. FLOATING VOICE ASSISTANT WIDGET ("Ask SAMAY")
+       ========================================================================= -->
+  <div class="voice-assistant-container" id="voiceAssistantContainer">
+    <!-- Floating Trigger Button -->
+    <button class="voice-fab" id="voiceFab" aria-label="Open SAMAY Voice Assistant" aria-expanded="false" title="Ask SAMAY Voice Assistant">
+      <div class="voice-fab-pulse"></div>
+      <div class="voice-fab-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+          <line x1="12" y1="19" x2="12" y2="23"></line>
+          <line x1="8" y1="23" x2="16" y2="23"></line>
+        </svg>
+      </div>
+      <span class="voice-fab-label">Ask SAMAY</span>
+    </button>
+
+    <!-- Expandable Voice Assistant Panel -->
+    <div class="voice-panel hidden" id="voicePanel" role="dialog" aria-modal="false" aria-labelledby="assistantTitle">
+      <div class="voice-panel-header">
+        <div class="assistant-identity">
+          <div class="assistant-avatar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            </svg>
+          </div>
+          <div>
+            <strong id="assistantTitle">SAMAY Voice Assistant</strong>
+            <small class="assistant-status">
+              <span class="online-dot"></span> Online · AI Prototype
+            </small>
+          </div>
+        </div>
+
+        <div class="assistant-controls">
+          <!-- Language Toggle (English / Hindi) -->
+          <button class="assistant-lang-btn" id="voiceLangToggle" title="Toggle language: English / हिन्दी">
+            <span id="voiceLangLabel">EN</span>
+          </button>
+          <!-- Speech Synthesis Mute Toggle -->
+          <button class="assistant-tool-btn" id="voiceSpeechMuteBtn" title="Mute/Unmute Voice Audio">
+            <span id="speechMuteIcon">🔊</span>
+          </button>
+          <!-- Close / Minimize -->
+          <button class="assistant-close-btn" id="voiceCloseBtn" aria-label="Close Assistant">✕</button>
+        </div>
+      </div>
+
+      <!-- Suggested Question Chips Bar -->
+      <div class="voice-suggestions-bar" id="voiceSuggestionsBar">
+        <span class="suggestions-label">Suggested:</span>
+        <div class="suggestions-scroll">
+          <button class="suggestion-chip" data-query="How do I apply for a government service?">How to apply?</button>
+          <button class="suggestion-chip" data-query="How can I check my application status?">Check status</button>
+          <button class="suggestion-chip" data-query="What can I do if my application is delayed?">Delayed application?</button>
+          <button class="suggestion-chip" data-query="How do I file an appeal?">File an appeal</button>
+          <button class="suggestion-chip" data-query="Which documents do I need?">Documents needed</button>
+        </div>
+      </div>
+
+      <!-- Live Voice Listening State Indicator -->
+      <div class="voice-listening-overlay hidden" id="voiceListeningOverlay">
+        <div class="listening-wave">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <p class="listening-text" id="listeningStatusText">Listening... Speak clearly in English or Hindi</p>
+        <button class="stop-listening-btn" id="stopListeningBtn">Stop Listening ✕</button>
+      </div>
+
+      <!-- Chat Messages Conversation Stream -->
+      <div class="voice-chat-messages" id="voiceChatMessages">
+        <div class="assistant-msg">
+          <div class="msg-bubble">
+            <p>Namaste! I'm <strong>SAMAY Voice Assistant</strong>. How can I help you today?</p>
+            <p class="msg-sub">Ask me about service deadlines, checking application status, filing an appeal, or required documents.</p>
+          </div>
+          <span class="msg-timestamp">Just now</span>
+        </div>
+      </div>
+
+      <!-- Chat & Voice Input Control Bar -->
+      <div class="voice-input-bar">
+        <button class="mic-input-btn" id="voiceMicBtn" title="Start voice recording (Web Speech API)" aria-label="Start voice input">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="23"></line>
+            <line x1="8" y1="23" x2="16" y2="23"></line>
+          </svg>
+        </button>
+
+        <input type="text" id="voiceTextInput" placeholder="Type your question or click mic to speak..." aria-label="Type message to SAMAY assistant" />
+
+        <button class="send-input-btn" id="voiceSendBtn" title="Send Question" aria-label="Send message">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+      <div class="voice-assistant-footer-note">
+        <span>Web Speech API · Structured Knowledge Base · General Guidance Only</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       4. AUTHENTICATION & PORTAL LOGIN MODALS
+       ========================================================================= -->
+  <!-- Citizen Login Modal -->
+  <div class="modal-backdrop hidden" id="citizenLoginModal" role="dialog" aria-modal="true" aria-labelledby="citizenModalTitle">
+    <div class="modal auth-modal">
+      <div class="modal-head">
+        <div>
+          <span class="eyebrow">CITIZEN SERVICES ACCESS</span>
+          <h2 id="citizenModalTitle">Citizen Login</h2>
+        </div>
+        <button class="close-modal" id="closeCitizenModalBtn" aria-label="Close dialog">✕</button>
+      </div>
+      <div class="auth-modal-body">
+        <p class="auth-intro">Access your applications, track statutory service deadlines, and exercise appeal rights.</p>
+        
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="tabCitizenDemo">Demo Quick Access</button>
+          <button class="auth-tab" id="tabCitizenPhone">Mobile OTP (Simulated)</button>
+        </div>
+
+        <div class="auth-tab-content active" id="contentCitizenDemo">
+          <div class="demo-login-box">
+            <span class="demo-box-icon">👤</span>
+            <div>
+              <strong>Pre-configured Citizen Profile</strong>
+              <small>Demo Account: Dinesh K. (Maharashtra Pilot Workspace)</small>
+            </div>
+          </div>
+          <p class="auth-note">No password or OTP required for demonstration access. Click below to continue directly to your Citizen Dashboard.</p>
+          <div class="modal-actions">
+            <button type="button" class="secondary-btn" id="cancelCitizenLoginBtn">Cancel</button>
+            <button type="button" class="primary-btn saffron-btn" id="enterCitizenDashboardBtn">Continue to Citizen Dashboard →</button>
+          </div>
+        </div>
+
+        <div class="auth-tab-content" id="contentCitizenPhone">
+          <form id="citizenPhoneForm">
+            <div class="form-field full">
+              <label for="citizenMobileNumber">Aadhaar-Linked Mobile Number *</label>
+              <input type="tel" id="citizenMobileNumber" placeholder="Enter 10-digit mobile number" value="9876543210" />
+            </div>
+            <div class="form-field full">
+              <label for="citizenAppRefLookup">Application Reference (Optional)</label>
+              <input type="text" id="citizenAppRefLookup" placeholder="e.g. SAM-2048" />
+            </div>
+            <div class="modal-actions">
+              <button type="button" class="secondary-btn" id="cancelCitizenPhoneBtn">Cancel</button>
+              <button type="submit" class="primary-btn">Verify &amp; Enter Dashboard</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Officer Portal Login Modal -->
+  <div class="modal-backdrop hidden" id="officerLoginModal" role="dialog" aria-modal="true" aria-labelledby="officerModalTitle">
+    <div class="modal auth-modal">
+      <div class="modal-head">
+        <div>
+          <span class="eyebrow">OFFICE OPERATIONS · RTS JURISDICTION</span>
+          <h2 id="officerModalTitle">Officer Portal Access</h2>
+        </div>
+        <button class="close-modal" id="closeOfficerModalBtn" aria-label="Close dialog">✕</button>
+      </div>
+      <div class="auth-modal-body">
+        <p class="auth-intro">Desk portal for reviewing assigned applications, monitoring at-risk queues, and preventing statutory defaults.</p>
+        
+        <div class="demo-login-box">
+          <span class="demo-box-icon">🛡️</span>
+          <div>
+            <strong>Designated Desk Officer (Simulated)</strong>
+            <small>Office: Nayab Tahsildar / SDO Desk · Pune &amp; Nashik</small>
+          </div>
+        </div>
+
+        <div class="form-field full" style="margin-top: 14px;">
+          <label for="officerDeskSelect">Select Administrative Desk</label>
+          <select id="officerDeskSelect">
+            <option value="Nayab Tahsildar Office">Nayab Tahsildar Office (Revenue Desk)</option>
+            <option value="Sub-Divisional Officer (SDO)">Sub-Divisional Officer (First Appellate)</option>
+            <option value="Municipal Corporation Desk">Municipal Corporation Desk (Civil Registration)</option>
+            <option value="District Supply Office">District Supply Office (Food &amp; Supplies)</option>
+          </select>
+        </div>
+
+        <p class="auth-note">This prototype simulates administrative review workflows. Click below to enter the Officer Radar view.</p>
+        
+        <div class="modal-actions">
+          <button type="button" class="secondary-btn" id="cancelOfficerLoginBtn">Cancel</button>
+          <button type="button" class="primary-btn" id="enterOfficerRadarBtn">Enter Officer Radar →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shared Modal Dialog Component (Used for Case Details, Add App, Appeals, Policies) -->
   <div class="modal-backdrop hidden" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal">
       <div class="modal-head">

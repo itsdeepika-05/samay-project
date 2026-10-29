@@ -1,108 +1,140 @@
-# SAMAY — Public Service Deadline Tracker
+# SAMAY — “UPI for Service Promises”
 
-**A modern, accessible, civic-tech web portal for tracking statutory public service guarantee deadlines.**
+**A Modern, Accessible, GovTech Landing Page & Statutory Public Service Deadline Tracker**
 
-SAMAY (Statutory Accountability &amp; Monitoring of Administrative Yield) empowers citizens, desk officers, and commission administrators to monitor public service delivery timelines, prevent statutory defaults, and automatically draft official appeals under Right to Public Service (RTS) legislation.
-
----
-
-## 🚀 Live Demo & How to Run
-
-1. Open the project folder in your preferred code editor (e.g. VS Code).
-2. Open `index.html` directly in any modern web browser (Google Chrome, Microsoft Edge, Mozilla Firefox, Safari), or use the **Live Server** extension in VS Code (**Right click `index.html` → Open with Live Server**).
-3. Alternatively, run a quick local development server:
-   ```bash
-   # Using Python
-   python -m http.server 8000
-   # Then visit http://localhost:8000 in your browser
-   ```
-4. **No external dependencies, build tools, or packages are required.** Built entirely with clean vanilla HTML5, CSS3, and modern JavaScript.
+SAMAY (Statutory Accountability &amp; Monitoring of Administrative Yield) is a unified digital platform that transforms citizen service guarantees from discretionary favors into deterministic, enforceable timelines under the **Right to Public Services (RTS) Act**.
 
 ---
 
-## 🎨 Design System & UI/UX Improvements
+## 🚀 How to Run the Website Locally
 
-The portal features a **modern public-service design system** inspired by national digital governance portals:
-- **Palette**: Deep civic navy (`#0f233d` / `#173863`), crisp white cards (`#ffffff`), clean slate-grey canvas (`#f8fafc` / `#f1f5f9`), and warm gold/amber accents (`#d97706`).
-- **Typography & Accessibility**: Clear typography with fluid font sizes (14px base, no illegible micro-text), meeting **WCAG AA / AAA contrast standards** across all text and interactive badges.
-- **Responsive Layout**: Fluid breakpoints optimized for:
-  - **Desktop (1200px+)**: Multi-column command center with sticky top navigation and side radar.
-  - **Tablet (768px – 1199px)**: Two-column cards and responsive side panel stacking.
-  - **Mobile (< 768px)**: Touch-friendly mobile drawer menu with dark backdrop overlay, stacked stat cards, scrollable tables, and tap-optimized buttons (minimum 44×44px).
-- **Consistent Icons**: Crisp, resolution-independent SVG vector iconography that renders consistently across Windows, macOS, Android, and iOS.
-- **Status Badges**: Distinct visual badges with dot indicators and accessible color coding:
-  - **Overdue (Breached)**: Crimson Red (`#b91c1c` on `#fef2f2`, border `#fecaca`)
-  - **Due Soon (≤ 5 Days)**: Amber Gold (`#92400e` on `#fffbeb`, border `#fde68a`)
-  - **Pending (On Track)**: Royal Blue (`#1e40af` on `#eff6ff`, border `#bfdbfe`)
-  - **Completed**: Emerald Green (`#047857` on `#ecfdf5`, border `#a7f3d0`)
+You can run this project with zero build steps or package installations:
 
----
+### Option 1: Direct Browser Launch
+Simply double-click `index.html` or open it directly in any modern browser (Google Chrome, Microsoft Edge, Mozilla Firefox, Safari).
 
-## ⚡ Functional Features
+### Option 2: Local HTTP Server (Recommended for Web Speech API & Speech Synthesis)
+Run this single command in your terminal from the project directory:
 
-### 1. Three Role-Based Dashboards
-- **Citizen Dashboard**: Track personal applications, view statutory delivery clocks, inspect step-by-step case timelines, and prepare appeal drafts.
-- **Officer Radar**: Proactively monitor desk queues, identify at-risk applications due in ≤ 5 days, review office health compliance index, and consult statutory service rules.
-- **Commission Overview**: Audit district-wide disposal performance, inspect interactive GIS performance pins (Pune, Mumbai, Nashik, Nagpur, Aurangabad), review service delay distributions, and analyze administrative accountability.
+```powershell
+# Using Python
+python -m http.server 8000
+```
+Then visit:
+```
+http://localhost:8000
+```
 
-### 2. Accurate Date Engine & Days Remaining
-- Calculates days remaining dynamically using **the actual current date (`new Date()`)**.
-- Accurately differentiates:
-  - Past deadline: `X days overdue` (Overdue / Breached)
-  - Due today: `Due today` (Due soon)
-  - 1 to 5 days remaining: `X days left` (Due soon / At risk)
-  - More than 5 days remaining: `X days left` (Pending / In progress)
-  - Completed: `Delivered on time` (Completed)
-- Top banner displays the live, formatted system date dynamically.
-
-### 3. Search, Filter & Multi-Criteria Sorting
-- **Real-Time Search**: Search applications instantly by service name, reference number, assigned office, or district.
-- **Status Filtering**: Filter by All, Due Soon, Overdue, Pending, or Completed.
-- **Sorting**:
-  - Target Deadline (Soonest first / Latest first)
-  - Submission Date (Newest first / Oldest first)
-  - Service Name (Alphabetical A–Z)
-- Clear empty state with single-click reset buttons when search yields no matches.
-
-### 4. Application Tracking Form & Validation
-- Form validates required fields, formats reference numbers into standard uppercase (`SAM-XXXX`), and ensures deadlines cannot precede submission dates.
-- Features **inline error feedback** (`.field-error-msg` and red input highlight) as well as toast notification warnings.
-- Submitting an application instantly recalculates metric cards, updates the Deadline Radar widget, synchronizes the officer queue, and persists to local storage.
-
-### 5. Application Details & Dynamic Case Timeline
-- Modal view presenting full metadata, statutory clock progression, assigned desk, and compliance status.
-- Interactive actions:
-  - **Toggle Status**: Mark as "Completed" or "In Progress".
-  - **Delete Case**: Safely remove demo records.
-  - **First Appeal**: Launch appeal generator for overdue applications.
-
-### 6. Statutory First Appeal Generator
-- Automatically drafts formal grievance letters citing Section 8 of the Right to Public Service Act.
-- Pre-fills service name, reference number, submission date, and statutory deadline.
-- Allows citizen to select grievance grounds and add clarifications.
-- Includes **Copy to Clipboard** and **Download Plain Text (`.txt`)** options.
-
-### 7. Full CSV Export Engine
-- One-click spreadsheet export for:
-  - Citizen applications (`samay-my-applications.csv`)
-  - Officer case queue (`samay-officer-cases.csv`)
-  - Commission district summary (`samay-commission-overview.csv`)
-  - Office compliance report (`samay-office-health-report.csv`)
-- Exports include UTF-8 BOM encoding for seamless display in Microsoft Excel, Google Sheets, and LibreOffice.
-
-### 8. LocalStorage Persistence & Demo Reset
-- Safely stores demonstration records in browser `localStorage` (`samay_demo_applications_v2` and `samay_officer_cases_v2`).
-- Refreshing the browser preserves newly added applications, status changes, and deletions.
-- Includes a prominent **Reset Sample Data** button to easily restore the original demonstration state at any time.
+Alternatively, if you use Node.js:
+```powershell
+npx serve .
+```
+Or right-click `index.html` in VS Code and select **Open with Live Server**.
 
 ---
 
-## 🔒 Security & Prototype Guidelines
+## 🌟 What's New: Landing Page & Voice Assistant Upgrade
 
-- **Mock Data**: All sample cases, statistics, and district numbers are demonstration records designed for presentation purposes.
-- **No Sensitive Personal Information**: The prototype does not collect or transmit passwords, Aadhaar numbers, or private citizen credentials.
-- **Client-Side Simulation**: Document uploads are client-side prototypes; no files are transmitted to external servers.
-- **Accessibility & Standards**: Adheres to modern web accessibility principles, keyboard navigation (ESC key to dismiss modals and menus), and reduced motion media queries.
+### 1. Modern Government-Tech Visual Design
+- **Color Palette**: Deep Civic Navy (`#0f233d` / `#173863`), Pure White (`#ffffff`), and Subtle National Saffron accents (`#ea580c` / `#f97316`).
+- **Typography**: Clean `Inter` font stack with accessible line heights and WCAG AA/AAA compliant contrast ratios.
+- **Micro-Interactions**: Ambient radial glow, hover card elevations, smooth scrolling navigation, and accessible keyboard focus states (`:focus-visible`).
+
+### 2. Sticky Navbar with Brand Emblem
+- Brand logo with clock/time emblem and tagline: *"UPI for Service Promises"*.
+- Navigation links: **Home**, **How It Works**, **Services**, **Citizen Rights**, **Contact**.
+- Action buttons: **Explore Demo** and **Login / Get Started**.
+- Responsive mobile drawer menu with touch-friendly tap targets.
+
+### 3. Hero Section with 3 Action Cards (Above the Fold)
+- **Top Eyebrow**: *"TRANSPARENT GOVERNANCE. ACCOUNTABLE SERVICES."*
+- **Main Heading**: *"Every Public Service. Every Deadline. Accountable."*
+- **Three Prominent Cards**:
+  1. **Citizen Login**: Apply for services, track applications, and understand rights. Routes to the Citizen Portal modal and dashboard.
+  2. **Officer Portal**: Manage desk queues, monitor deadlines, and clear at-risk requests. Routes to the Officer Portal modal and radar.
+  3. **Explore Demo**: Direct, instant access to sample workflows, live countdowns, and simulated cases without registration.
+
+### 4. Instant Receipt Clock ("Start Clock from Slip")
+A dedicated two-card interactive module matching the official citizen workflow:
+- **Card 1: Start clock from slip**:
+  - **Photo of slip**: Upload or capture physical receipt images with OCR scan simulation.
+  - **Speak slip text**: Web Speech API voice dictation directly into the slip text field.
+  - **Paste slip text**: Paste any receipt or acknowledgement text with instant smart regex parsing.
+  - **Load sample slip**: One-click rotating loader with realistic receipts (Income Certificate, Caste Certificate, Domicile, Land Mutation).
+  - **Read slip text**: Intelligent parser extracting Service, Application No, Date Received, and Office.
+  - **Editable extracted fields**: Real-time reactive updates as user selects services or modifies dates.
+- **Card 2: Clock and deadline**:
+  - **Circular Dynamic Gauge**: Visual conic-gradient ring showing days remaining, on-track, due-soon, or overdue breach status.
+  - **Accurate Statutory Calculation**: Calculates statutory turnaround days under RTS Act provisions (e.g. 15 days for Income Certificate, 21 days for Caste Certificate).
+  - **Statutory Guarantee Note**: Cites relevant state RTS Act clauses and legal entitlement for Section 8 First Appeal on breach.
+  - **Save to My Applications**: Persists the scanned case directly into `localStorage`, updating citizen stats and table immediately.
+  - **Open in Citizen Dashboard**: Seamlessly transitions to the Citizen Workspace with the application highlighted.
+
+### 5. Floating Voice Assistant ("Ask SAMAY")
+- Accessible floating button in the bottom-right corner with microphone icon and pulsing indicator.
+- Expandable bilingual assistant panel (English & हिन्दी):
+  - Greeting: *"Namaste! I'm SAMAY Voice Assistant. How can I help you today?"*
+  - **Browser Web Speech API** integration for speech-to-text (`SpeechRecognition`) and text-to-speech (`speechSynthesis`).
+  - Animated soundwave listening overlay with manual stop button.
+  - Speech synthesis audio mute/unmute control.
+  - Suggestion chips for instant answers:
+    1. *“How do I apply for a government service?”*
+    2. *“How can I check my application status?”*
+    3. *“What can I do if my application is delayed?”*
+    4. *“How do I file an appeal?”*
+    5. *“Which documents do I need?”*
+  - Recognizes specific case queries (e.g. *“Status of SAM-2048”*) and answers with real-time in-memory tracking countdowns.
+  - Graceful fallback for unsupported browsers with standard text messaging.
+
+### 5. Step-by-Step Connecting Timeline (How It Works)
+- **Step 1**: Choose a Government Service (check statutory days).
+- **Step 2**: Submit & Receive Reference ID (official acknowledgement).
+- **Step 3**: Track Progress & Clocks (proactive color-coded alerts).
+- **Step 4**: File Automated Appeal (Section 8 First Appeal draft).
+
+### 6. Key Features Grid
+- 6 modern cards with SVG iconography:
+  - Application Tracking
+  - Service Deadline Monitoring
+  - Citizen Rights Information
+  - Proactive Delay Alerts
+  - Grievance & Appeal Guidance
+  - Voice-Based Assistance
+
+### 7. Statutory Services Directory
+- Catalog of popular state citizen services with guaranteed maximum turnaround times:
+  - Income Certificate (15 Days · Tahsildar)
+  - Caste Certificate (21 Days · SDO Office)
+  - Domicile Certificate (15 Days · Executive Magistrate)
+  - Birth & Death Registration (7 Days · Municipal Health)
+  - Land Mutation / 7/12 Extract (30 Days · Talathi/Circle Officer)
+  - Ration Card Modification (21 Days · Food & Supplies)
+- Real-time search filter to quickly find any service or timeline.
+
+### 8. Citizen Rights & RTS Act Section
+- Highlights key legal protections under the Right to Public Services Act:
+  - Guaranteed delivery by law.
+  - Mandatory written reasons for rejection.
+  - Right of First Appeal under Section 8.
+  - Financial penalty deductions on defaulting officers.
+
+### 9. Live-Looking Demo Preview Section
+- Embedded preview table labeled with a prominent **DEMO DATA · SIMULATED DASHBOARD** badge.
+- Shows live sample applications with status pills (Due Soon, Overdue, In Progress, Completed).
+- Inspect Case buttons jump directly into the full working case details modal.
+- Prominent button: **Launch Full Interactive Tracker →**.
+
+### 10. Contact & Citizen Support
+- Helpline details (1800-RTS-SAMAY) and District Kendra information.
+- Working assistance form with client-side validation and toast confirmation.
+
+### 11. Full Interactive Workspace Preserved
+- Full multi-dashboard command center preserved and accessible via **Launch Demo**, **Explore Demo**, or the Login modals:
+  - **Citizen Dashboard**: Stat cards, search, status filter, multi-criteria sort, deadline radar widget, educational timeline, add application form, details modal, appeal draft generator.
+  - **Officer Radar**: Proactive desk queue management, at-risk filtering, office health score, rule registry.
+  - **Commission Map**: Interactive district performance pins (Pune, Mumbai, Nashik, Nagpur, Aurangabad), delay distribution bar chart, office accountability table.
+  - **CSV Exports**: One-click download for citizen applications, officer cases, commission reports, and office health.
+  - **Seamless Navigation**: Clear **← Back to Public Portal** and **← Home Portal** buttons return to the landing page anytime.
 
 ---
 
@@ -110,87 +142,23 @@ The portal features a **modern public-service design system** inspired by nation
 
 ```
 samay/
-├── index.html       # Semantic HTML5 app shell, three dashboards, and modal templates
-├── style.css        # Modern, responsive public-service design system (navy/white/grey)
-├── script.js        # Dynamic date engine, filtering, validation, persistence & exports
-└── README.md        # Documentation, feature guide & demonstration instructions
+├── index.html       # Landing page sections, modals, workspace app shell & voice widget
+├── style.css        # Navy/white/saffron design system, responsive styles & animations
+├── script.js        # Voice assistant engine, view router, statutory date logic & exports
+└── README.md        # Documentation, feature guide & execution instructions
 ```
-
-## ⚡ Functional Features
-
-### 1. Three Role-Based Dashboards
-- **Citizen Dashboard**: Track personal applications, view statutory delivery clocks, inspect step-by-step case timelines, and prepare appeal drafts.
-- **Officer Radar**: Proactively monitor desk queues, identify at-risk applications due in ≤ 5 days, review office health compliance index, and consult statutory service rules.
-- **Commission Overview**: Audit district-wide disposal performance, inspect interactive GIS performance pins (Pune, Mumbai, Nashik, Nagpur, Aurangabad), review service delay distributions, and analyze administrative accountability.
-
-### 2. Accurate Date Engine & Days Remaining
-- Calculates days remaining dynamically using **the actual current date (`new Date()`)**.
-- Accurately differentiates:
-  - Past deadline: `X days overdue` (Overdue / Breached)
-  - Due today: `Due today` (Due soon)
-  - 1 to 5 days remaining: `X days left` (Due soon / At risk)
-  - More than 5 days remaining: `X days left` (Pending / In progress)
-  - Completed: `Delivered on time` (Completed)
-- Top banner displays the live, formatted system date dynamically.
-
-### 3. Search, Filter & Multi-Criteria Sorting
-- **Real-Time Search**: Search applications instantly by service name, reference number, assigned office, or district.
-- **Status Filtering**: Filter by All, Due Soon, Overdue, Pending, or Completed.
-- **Sorting**:
-  - Target Deadline (Soonest first / Latest first)
-  - Submission Date (Newest first / Oldest first)
-  - Service Name (Alphabetical A–Z)
-- Clear empty state with single-click reset buttons when search yields no matches.
-
-### 4. Application Tracking Form & Validation
-- Form validates required fields, formats reference numbers into standard uppercase (`SAM-XXXX`), and ensures deadlines cannot precede submission dates.
-- Features **inline error feedback** (`.field-error-msg` and red input highlight) as well as toast notification warnings.
-- Submitting an application instantly recalculates metric cards, updates the Deadline Radar widget, synchronizes the officer queue, and persists to local storage.
-
-### 5. Application Details & Dynamic Case Timeline
-- Modal view presenting full metadata, statutory clock progression, assigned desk, and compliance status.
-- Interactive actions:
-  - **Toggle Status**: Mark as "Completed" or "In Progress".
-  - **Delete Case**: Safely remove demo records.
-  - **First Appeal**: Launch appeal generator for overdue applications.
-
-### 6. Statutory First Appeal Generator
-- Automatically drafts formal grievance letters citing Section 8 of the Right to Public Service Act.
-- Pre-fills service name, reference number, submission date, and statutory deadline.
-- Allows citizen to select grievance grounds and add clarifications.
-- Includes **Copy to Clipboard** and **Download Plain Text (`.txt`)** options.
-
-### 7. Full CSV Export Engine
-- One-click spreadsheet export for:
-  - Citizen applications (`samay-my-applications.csv`)
-  - Officer case queue (`samay-officer-cases.csv`)
-  - Commission district summary (`samay-commission-overview.csv`)
-  - Office compliance report (`samay-office-health-report.csv`)
-- Exports include UTF-8 BOM encoding for seamless display in Microsoft Excel, Google Sheets, and LibreOffice.
-
-### 8. LocalStorage Persistence & Demo Reset
-- Safely stores demonstration records in browser `localStorage` (`samay_demo_applications_v2` and `samay_officer_cases_v2`).
-- Refreshing the browser preserves newly added applications, status changes, and deletions.
-- Includes a prominent **Reset Sample Data** button to easily restore the original demonstration state at any time.
 
 ---
 
-## 🔒 Security & Prototype Guidelines
+## 🏆 National Hackathon Presentation Highlights
 
-- **Mock Data**: All sample cases, statistics, and district numbers are demonstration records designed for presentation purposes.
-- **No Sensitive Personal Information**: The prototype does not collect or transmit passwords, Aadhaar numbers, or private citizen credentials.
-- **Client-Side Simulation**: Document uploads are client-side prototypes; no files are transmitted to external servers.
-- **Accessibility & Standards**: Adheres to modern web accessibility principles, keyboard navigation (ESC key to dismiss modals and menus), and reduced motion media queries.
-
----
-
-## 📁 File Structure
-
-```
-samay/
-├── index.html       # Semantic HTML5 app shell, three dashboards, and modal templates
-├── style.css        # Modern, responsive public-service design system (navy/white/grey)
-├── script.js        # Dynamic date engine, filtering, validation, persistence & exports
-└── README.md        # Documentation, feature guide & demonstration instructions
-```
-
+When demonstrating this project to judges:
+1. **Landing Page First Impression**: Start on the public landing page to showcase the citizen-first digital governance portal.
+2. **Interactive Voice Assistant**: Click **Ask SAMAY** at bottom right. Demonstrate either voice input via microphone or click the quick question chips to see instant bilingual answers.
+3. **The 3 Hero Action Paths**:
+   - Click **Citizen Login** to show the mobile OTP and demo profile modal.
+   - Click **Officer Portal** to show the administrative desk selector.
+   - Click **Launch Demo** to transition into the interactive workspace.
+4. **Statutory Deadline Engine**: In the Citizen Dashboard, highlight how days remaining are calculated dynamically from the actual current date (`new Date()`).
+5. **Overdue First Appeal**: Open case `SAM-1987` (overdue case) and generate the formal appeal draft citing Section 8. Demonstrate **Copy to Clipboard** and **Download (.txt)**.
+6. **Data Persistence**: Add a new application and refresh the browser to prove local persistence, or click **Reset sample data** to restore the initial demo state.
